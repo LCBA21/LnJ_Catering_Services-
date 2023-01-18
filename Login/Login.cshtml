@@ -1,0 +1,15 @@
+﻿@{
+    Layout = "~/Views/Shared/_Login_Layout.cshtml";
+
+}
+
+<div class="form-container" >
+    <form asp-controller="Login" asp-action="verify_user" method="post" style="width:90%">
+        <h3>login now</h3>
+        <input type="email" name="email" required placeholder="enter your email">
+        <input type="password" name="password" required placeholder="enter your password">
+        <input type="submit" name="submit" value="login now" class="form-btn">
+        <p>don't have an account? <a asp-controller="Register" asp-action="Register">register now</a></p>
+    </form>
+
+</div>

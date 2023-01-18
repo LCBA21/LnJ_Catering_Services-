@@ -1,0 +1,70 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "🔎Search Food";
+    Layout = "~/Views/Shared/_Search_Layout.cshtml";
+
+}
+
+<form asp-controller="Home" asp-action="SearchFoodResult" id="search-form">
+    <input type="search" placeholder="search here..." name="Sea" id="search-box">
+    @*<label for="search-box" class="fas fa-search"></label>*@
+    <button id="search-button" type="submit" class="btn btn-primary">
+        <i class="fas fa-search"></i>
+    </button>
+    <i class="fas fa-times" id="close"></i>
+</form>
+
+
+<section class="menu" id="menu">
+    <br /><br /><br /><br />
+    <h3 class="sub-heading"> our menu </h3>
+    <h1 class="heading"> today's speciality </h1>
+
+    @if (ViewBag.searResults.Count == 0)
+    {
+        <h1 class="heading">No results found</h1>
+    }
+
+
+    <div class="box-container">
+        @foreach (var item in ViewBag.searResults)
+        {
+            <div class="box">
+                <div class="image">
+                    <img src="~/@item.MenuImagePath" alt="">
+                    <a asp-controller="Login" asp-action="Login" class="fas fa-heart"></a>
+                </div>
+                <div class="content">
+                    <h3>@item.MenuName</h3>
+                    <p>
+                        <span style="color: green; font-weight: bold; text-transform: lowercase;"> <span style=" font-weight: bolder; font-size: larger; ">@item.MenuRating</span> star rating</span> <br />
+                        @item.MenuDescription <br /><span class="price">R @item.MenuPrice</span>
+                    </p>
+
+                    <a asp-controller="Home" asp-action="Order" class="btn">Order</a>
+                    <form asp-controller="Home" asp-action="AddToCart" method="post">
+                        <input type="hidden" name="DishID" value="@item.MenuID" />
+                        <button type="submit" class="btn">Add To Cart</button>
+                    </form>
+                    @*<a asp-controller="Home" asp-action="Order" class="btn">Add to cart</a>*@
+                </div>
+            </div>
+        }
+
+    </div>
+    <style>
+        .starrating {
+            color: green;
+            font-weight: bold;
+            text-transform: lowercase;
+        }
+
+        .starnumber {
+            font-weight: bolder;
+            font-size: larger;
+        }
+    </style>
+</section>
+

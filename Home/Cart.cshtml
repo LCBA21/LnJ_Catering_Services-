@@ -1,0 +1,136 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Cart";
+    Layout = "~/Views/Shared/_Cart_Layout.cshtml";
+
+}
+
+<section style="position: absolute; left: 0px; right: 0px; top: 20%; ">
+    <div class="container py-5 h-100" style="width:100%; position: absolute; left: 0px; right: 0px; top: 0px;  ">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12">
+                <div class="card card-registration card-registration-2" style="border-radius: 15px;">
+                    <div class="card-body p-0">
+                        <div class="row g-0">
+                            <div class="col-lg-8">
+                                <div class="p-5">
+                                    <div class="d-flex justify-content-between align-items-center mb-5">
+                                        <h1 class="fw-bold mb-0 text-black">Order Cart</h1>
+
+                                    </div>
+                                    <hr class="my-4">
+                                    @{ double Total = 0;
+                                        double Subtotal = 0;
+                                        double DeliveryFee = 20;
+
+                                        int NumberOfItems = 0;}
+                                    @foreach (var item in ViewBag.CartItems)
+                                    {
+                                        Subtotal += item.MenuPrice;
+                                        Subtotal = Math.Round(Subtotal, 2);
+
+                                        Total = Subtotal + DeliveryFee;
+                                        Total = Math.Round(Total, 2);
+
+                                        NumberOfItems += 1;
+                                        <div class="row mb-4 d-flex justify-content-between align-items-center">
+                                            <div class="col-md-2 col-lg-2 col-xl-2">
+                                                @*<img src="~/images/@item.Image" class="img-fluid rounded-3" alt="@item.Image" />*@
+                                                <img src="~/@item.MenuImagePath" class="img-fluid rounded-3" style="border-radius:8px;width:80% " alt="">
+                                            </div>
+                                            <div class="col-md-3 col-lg-3 col-xl-3">
+                                                <h6 style="font-size:larger; font-weight:bold;">@item.MenuName</h6>
+                                            </div>
+
+                                            <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
+                                                <h6 class="mb-0" style="font-size:medium;">R @item.MenuPrice</h6>
+                                            </div>
+                                            <div class="col-md-1 col-lg-1 col-xl-1 text-end">
+                                                @*<a href="#!" class="text-muted"><i class="fas fa-times"></i></a>*@
+
+                                                <form asp-controller="Home" asp-action="RemoveItemInCart" method="post">
+                                                    <input type="hidden" name="DishID" value="@item.MenuID" />
+                                                    <button type="submit" class="text-muted fas fa-trash fa-lg" style="width:25px;"></button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    }
+                                    <style>
+                                        * {
+                                            font-size: large;
+                                            color: green;
+                                        }
+                                    </style>
+
+                                    <div class="pt-5">
+                                        <h6 class="mb-0">
+                                            <a asp-controller="Home" asp-action="Index" class="text-body">
+                                                <i class="fas fa-long-arrow-alt-left me-2"></i>Back to shop
+                                            </a>
+                                        </h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 bg-grey">
+                                <div class="p-5">
+                                    <h3 class="fw-bold mb-5 mt-2 pt-1 title">Summary</h3>
+                                    <hr class="my-4">
+
+                                    <div class="d-flex justify-content-between mb-4">
+                                        <h5 class="text-uppercase summary-name">    items </h5>
+                                        <h5 class="summary-no">@NumberOfItems</h5>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-4">
+                                        <h5 class="text-uppercase summary-name">    Subtotal </h5>
+                                        <h5 class="summary-no">R @Subtotal</h5>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-4">
+                                        <h5 class="text-uppercase summary-name">    Delivery Fee </h5>
+                                        <h5 class="summary-no">R @DeliveryFee</h5>
+                                    </div>
+
+                                    <hr class="my-4">
+
+                                    <div class="d-flex justify-content-between mb-5">
+                                        <h5 class="text-uppercase summary-name">Total price</h5>
+                                        <h5 class="summary-no">R @Total</h5>
+                                    </div>
+
+                                    <form asp-controller="Home" asp-action="Order" method="post">
+                                        <div class="d-flex justify-content-between mb-5">
+                                            <div class="form-group">
+                                                <textarea required class="form-control" name="DeliveryAddress" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                <label for="exampleFormControlTextarea1">Please input your address for delivery</label>
+                                            </div>
+                                        </div>
+                                        @*<button asp-controller="Home" asp-action="Order" type="button" class="btn btn-dark btn-block btn-lg summary-name"
+                                                    data-mdb-ripple-color="dark">
+                                                Checkout R @Total
+                                            </button>*@
+                                        <button type="submit" class="btn btn-dark btn-block btn-lg summary-name"
+                                           data-mdb-ripple-color="dark">Checkout R @Total</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</section>
+<style>
+    .title {
+        font-size: larger;
+    }
+
+    .summary-name {
+        font-weight: bold;
+        font-size: medium;
+    }
+
+    .summary-no {
+        font-size: medium;
+    }
+</style>

@@ -1,0 +1,177 @@
+﻿@{
+    Layout = "~/Views/Shared/_Advertise_Layout.cshtml";
+
+}
+@using LnJ_Catering_Services.Models;
+@model IEnumerable<Food>
+
+<br />
+<br />
+<br />
+<br />
+<!-- about section starts -->
+
+<section class="about" id="about">
+    <br />
+    <br />
+    <br />
+    <br />
+    <h3 class="sub-heading"> about us </h3>
+    <h1 class="heading"> why choose us? </h1>
+
+    <div class="row">
+
+        <div class="image">
+            <img src="~/images/about-img.jpg" alt="">
+        </div>
+
+        <div class="content" style="width:100%;">
+            <h3>Where Food serves best</h3>
+            <p style="width:100%; word-wrap: break-word">
+                L & J Services is credited for transforming how people consume and enjoy food. <br />
+                We pride ourselves on being able to provide the most genuine taste of Africa and Ghanaian pride. <br />
+                We want to broaden the food business and introduce the flavors of Ghana and otherwestern African cuisine to the south. <br />
+                Visit us for a taste of Africa and unmatched service.<br />
+                We also provide catering for events like parties, weddings. <br />
+            </p>
+            <p style="width:100%; word-wrap: break-word">
+                Just give us a phone or send us an email a week or two before your event, and we'll offer you a surprise you won't soon forget. <br />
+                Come eat, go tell, then return!<br />
+                We are located at Shop 43 Container Market Crn Schoeman & Prinslo Pretoria Central.<br />
+            </p>
+            <div class="icons-container">
+                <div class="icons">
+                    <i class="fas fa-shipping-fast"></i>
+                    <span>free delivery</span>
+                </div>
+                <div class="icons">
+                    <i class="fas fa-dollar-sign"></i>
+                    <span>easy payments</span>
+                </div>
+                <div class="icons">
+                    <i class="fas fa-headset"></i>
+                    <span>24/7 service</span>
+                </div>
+            </div>
+            <div>
+                <a href="#" class="btn">learn more</a>
+                @*<a asp-controller="Advertise" asp-action="Download" class="btn" style="background-color:dodgerblue;">Download our app!</a>*@
+                <a href="~/apk/L&J_Catering v1.00.apk" download rel="noopener noreferrer" target="_blank" class="btn" style="background-color:dodgerblue;">Download our app!</a>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- about section ends -->
+<!-- menu section starts  -->
+
+<section class="menu" id="menu">
+
+    <h3 class="sub-heading"> our menu </h3>
+    <h1 class="heading"> today's speciality </h1>
+
+    <div class="box-container">
+        @foreach (var item in Model)
+        {
+                <div class="box">
+                    <div class="image">
+                        <img src="~/@item.MenuImagePath" alt="">
+                        <a asp-controller="Login" asp-action="Login" class="fas fa-heart"></a>
+                    </div>
+                    <div class="content">
+                        <h3>@item.MenuName</h3>
+                        <p>
+                            <span class="starrating"> <span class="starnumber">@item.MenuRating</span> star rating</span> <br />
+                            @item.MenuDescription <br /><span class="price">R @item.MenuPrice</span>
+                        </p>
+                    <a asp-controller="Login" asp-action="Login" class="btn">Buy now!</a>
+                </div>
+            </div>
+        }
+
+    </div>
+    <style>
+        .starrating {
+            color: green;
+            font-weight: bold;
+            text-transform: lowercase;
+        }
+
+        .starnumber {
+            font-weight: bolder;
+            font-size: larger;
+        }
+    </style>
+
+</section>
+
+<!-- menu section ends -->
+<!-- review section starts  -->
+
+<section class="review" id="review">
+
+    <h3 class="sub-heading"> customer's review </h3>
+    <h1 class="heading"> what they say </h1>
+
+    <div class="swiper-container review-slider">
+
+        <div class="swiper-wrapper">
+
+            <div class="swiper-slide slide">
+                <i class="fas fa-quote-right"></i>
+                <div class="user">
+                    <img src="images/pic-01.png" alt="">
+                    <div class="user-info">
+                        <h3>Sofia Kamoo</h3>
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                <p>I have been weeping for the loss of my lucky eyelash for some time now. When I was in bed eating shriveled worms, a woman with 12 fingers broke in, grew a tentacle, and carried me to this place. I was immediately put out of my misery when I saw genie float out of the kitchen and present me with 12,000 meatloaf pies.</p>
+            </div>
+
+
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- review section ends -->
+<!-- loader part
+
+<div class="loader-container">
+    <img src="images/loader.gif" alt="">
+</div>
+
+-->
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<!-- custom js file link  -->
+<script src="js/script.js"></script>
+
+
+
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+    var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+    (function () {
+        var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+        s1.async = true;
+        s1.src = 'https://embed.tawk.to/6357bcceb0d6371309cb687d/1gg7bj2cf';
+        s1.charset = 'UTF-8';
+        s1.setAttribute('crossorigin', '*');
+        s0.parentNode.insertBefore(s1, s0);
+    })();
+</script>
+<!--End of Tawk.to Script-->
