@@ -1,10 +1,15 @@
-# Welcome to LnJ Catering Services
+# Welcome to LnJ Catering Services: Where Food serves best 
 
 We are a full-service catering company dedicated to providing delicious and personalized meals for any occasion. 
 Our website is designed to help you learn more about our services and make it easy to place an order or request a quote.
 
 
 # Our Services
+
+L & J Services is credited for transforming how people consume and enjoy food. 
+                We pride ourselves on being able to provide the most genuine taste of Africa and Ghanaian pride.
+                We want to broaden the food business and introduce the flavors of Ghana and otherwestern African cuisine to the south. 
+                Visit us for a taste of Africa and unmatched service.
 
 Corporate Catering: We provide delicious and nutritious meals for corporate events, meetings, and conferences.
 Wedding Catering: Let us help make your special day even more memorable with our customizable wedding packages.
